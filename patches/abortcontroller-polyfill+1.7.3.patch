@@ -1,0 +1,53 @@
+diff --git a/node_modules/abortcontroller-polyfill/dist/abortcontroller-polyfill-only.js b/node_modules/abortcontroller-polyfill/dist/abortcontroller-polyfill-only.js
+index 7d7703e..1657cf7 100644
+--- a/node_modules/abortcontroller-polyfill/dist/abortcontroller-polyfill-only.js
++++ b/node_modules/abortcontroller-polyfill/dist/abortcontroller-polyfill-only.js
+@@ -336,7 +336,6 @@
+     // does NOT correctly implement abortable fetch:
+     // https://bugs.webkit.org/show_bug.cgi?id=174980#c2
+ 
+-
+     return typeof self.Request === 'function' && !self.Request.prototype.hasOwnProperty('signal') || !self.AbortController;
+   }
+ 
+diff --git a/node_modules/abortcontroller-polyfill/dist/cjs-ponyfill.js b/node_modules/abortcontroller-polyfill/dist/cjs-ponyfill.js
+index e05f587..0b38ed0 100644
+--- a/node_modules/abortcontroller-polyfill/dist/cjs-ponyfill.js
++++ b/node_modules/abortcontroller-polyfill/dist/cjs-ponyfill.js
+@@ -335,7 +335,6 @@ function polyfillNeeded(self) {
+   // does NOT correctly implement abortable fetch:
+   // https://bugs.webkit.org/show_bug.cgi?id=174980#c2
+ 
+-
+   return typeof self.Request === 'function' && !self.Request.prototype.hasOwnProperty('signal') || !self.AbortController;
+ }
+ 
+diff --git a/node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js b/node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js
+index 1ec5e38..c84303f 100644
+--- a/node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js
++++ b/node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js
+@@ -336,7 +336,6 @@
+     // does NOT correctly implement abortable fetch:
+     // https://bugs.webkit.org/show_bug.cgi?id=174980#c2
+ 
+-
+     return typeof self.Request === 'function' && !self.Request.prototype.hasOwnProperty('signal') || !self.AbortController;
+   }
+ 
+@@ -369,6 +368,8 @@
+         _patchTargets$__FORCE = _patchTargets.__FORCE_INSTALL_ABORTCONTROLLER_POLYFILL,
+         __FORCE_INSTALL_ABORTCONTROLLER_POLYFILL = _patchTargets$__FORCE === void 0 ? false : _patchTargets$__FORCE;
+ 
++    NativeRequest.prototype = NativeRequest.constructor;
++
+     if (!polyfillNeeded({
+       fetch: fetch,
+       Request: NativeRequest,
+@@ -480,7 +481,6 @@
+   }
+ 
+   (function (self) {
+-
+     if (!polyfillNeeded(self)) {
+       return;
+     }

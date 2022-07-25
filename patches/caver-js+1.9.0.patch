@@ -1,0 +1,1010 @@
+diff --git a/node_modules/caver-js/caver-cli/index.js b/node_modules/caver-js/caver-cli/index.js
+index 900bcf7..d9ffe07 100644
+--- a/node_modules/caver-js/caver-cli/index.js
++++ b/node_modules/caver-js/caver-cli/index.js
+@@ -18,7 +18,7 @@
+ 
+ const fs = require('fs')
+ const jsonFormat = require('json-format')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chalk = require('chalk')
+ const figlet = require('figlet')
+ const inquirer = require('inquirer')
+diff --git a/node_modules/caver-js/packages/caver-abi/src/index.js b/node_modules/caver-js/packages/caver-abi/src/index.js
+index 9d14b5b..e2b4b74 100644
+--- a/node_modules/caver-js/packages/caver-abi/src/index.js
++++ b/node_modules/caver-js/packages/caver-abi/src/index.js
+@@ -25,7 +25,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const EthersAbiCoder = require('@ethersproject/abi').AbiCoder
+ const ParamType = require('@ethersproject/abi').ParamType
+diff --git a/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyHelper.js b/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyHelper.js
+index ff5eb54..0e9dd2c 100644
+--- a/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyHelper.js
++++ b/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyHelper.js
+@@ -21,7 +21,7 @@
+  * @ignore
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const WeightedMultiSigOptions = require('./weightedMultiSigOptions')
+ 
+ const ACCOUNT_KEY_TAG = {
+diff --git a/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyRoleBased.js b/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyRoleBased.js
+index a938520..11fd20a 100644
+--- a/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyRoleBased.js
++++ b/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyRoleBased.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const AccountKeyWeightedMultiSig = require('./accountKeyWeightedMultiSig')
+ const AccountKeyLegacy = require('./accountKeyLegacy')
+diff --git a/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyWeightedMultiSig.js b/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyWeightedMultiSig.js
+index 66df1dc..8df1669 100644
+--- a/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyWeightedMultiSig.js
++++ b/node_modules/caver-js/packages/caver-account/src/accountKey/accountKeyWeightedMultiSig.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const WeightedPublicKey = require('./weightedPublicKey')
+ const utils = require('../../../caver-utils')
+ const { ACCOUNT_KEY_TAG, fillWeightedMultiSigOptionsForMultiSig } = require('./accountKeyHelper')
+diff --git a/node_modules/caver-js/packages/caver-account/src/accountKey/weightedMultiSigOptions.js b/node_modules/caver-js/packages/caver-account/src/accountKey/weightedMultiSigOptions.js
+index 2120c62..1652856 100644
+--- a/node_modules/caver-js/packages/caver-account/src/accountKey/weightedMultiSigOptions.js
++++ b/node_modules/caver-js/packages/caver-account/src/accountKey/weightedMultiSigOptions.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ /**
+  * Representing an options for AccountKeyWeightedMultiSig.
+diff --git a/node_modules/caver-js/packages/caver-account/src/index.js b/node_modules/caver-js/packages/caver-account/src/index.js
+index 6f2304a..9c47aa7 100644
+--- a/node_modules/caver-js/packages/caver-account/src/index.js
++++ b/node_modules/caver-js/packages/caver-account/src/index.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const utils = require('../../caver-utils')
+ const AccountKeyDecoder = require('./accountKey/accountKeyDecoder')
+ const AccountKeyLegacy = require('./accountKey/accountKeyLegacy')
+diff --git a/node_modules/caver-js/packages/caver-contract/src/index.js b/node_modules/caver-js/packages/caver-contract/src/index.js
+index 3828354..63c6a75 100644
+--- a/node_modules/caver-js/packages/caver-contract/src/index.js
++++ b/node_modules/caver-js/packages/caver-contract/src/index.js
+@@ -31,7 +31,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const core = require('../../caver-core')
+ const Method = require('../../caver-core-method')
+ const utils = require('../../caver-utils')
+@@ -1454,6 +1454,7 @@ Contract.prototype._executeMethod = async function _executeMethod() {
+     const _this = this
+     const args = this._parent._processExecuteArguments.call(this, Array.prototype.slice.call(arguments), defer)
+     var defer = utils.promiEvent(args.type !== 'send') /* eslint-disable-line no-var */
++    
+     const klayAccounts = _this.constructor._klayAccounts || _this._klayAccounts
+     const wallet = _this._parent._wallet || _this._wallet
+ 
+diff --git a/node_modules/caver-js/packages/caver-core-helpers/src/formatters.js b/node_modules/caver-js/packages/caver-core-helpers/src/formatters.js
+index 7f504aa..f93bdb5 100644
+--- a/node_modules/caver-js/packages/caver-core-helpers/src/formatters.js
++++ b/node_modules/caver-js/packages/caver-core-helpers/src/formatters.js
+@@ -25,7 +25,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const utils = require('../../caver-utils')
+ const validateParams = require('./validateFunction').validateParams
+ const { getTypeInt } = require('../../caver-transaction/src/transactionHelper/transactionHelper')
+diff --git a/node_modules/caver-js/packages/caver-core-method/src/index.js b/node_modules/caver-js/packages/caver-core-method/src/index.js
+index f952190..62cd6c4 100644
+--- a/node_modules/caver-js/packages/caver-core-method/src/index.js
++++ b/node_modules/caver-js/packages/caver-core-method/src/index.js
+@@ -25,7 +25,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const errors = require('../../caver-core-helpers').errors
+ const formatters = require('../../caver-core-helpers').formatters
+ const utils = require('../../caver-utils')
+diff --git a/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js b/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
+index 04b2b54..5806d8d 100644
+--- a/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
++++ b/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const oboe = require('oboe')
+ const errors = require('../../../caver-core-helpers').errors
+ 
+diff --git a/node_modules/caver-js/packages/caver-core-requestmanager/src/index.js b/node_modules/caver-js/packages/caver-core-requestmanager/src/index.js
+index 5720997..2e7a5c7 100644
+--- a/node_modules/caver-js/packages/caver-core-requestmanager/src/index.js
++++ b/node_modules/caver-js/packages/caver-core-requestmanager/src/index.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const errors = require('../../caver-core-helpers').errors
+ const middleware = require('../../caver-middleware')
+ 
+diff --git a/node_modules/caver-js/packages/caver-core-subscriptions/src/subscription.js b/node_modules/caver-js/packages/caver-core-subscriptions/src/subscription.js
+index 557ea1c..d047a0a 100644
+--- a/node_modules/caver-js/packages/caver-core-subscriptions/src/subscription.js
++++ b/node_modules/caver-js/packages/caver-core-subscriptions/src/subscription.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const EventEmitter = require('eventemitter3')
+ const errors = require('../../caver-core-helpers').errors
+ 
+diff --git a/node_modules/caver-js/packages/caver-ipfs/src/index.js b/node_modules/caver-js/packages/caver-ipfs/src/index.js
+index aff05a5..0fd1a11 100644
+--- a/node_modules/caver-js/packages/caver-ipfs/src/index.js
++++ b/node_modules/caver-js/packages/caver-ipfs/src/index.js
+@@ -17,7 +17,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const lodash = require('lodash')
++const lodash = require('underscore')
+ const fs = require('fs')
+ const ipfsClient = require('ipfs-http-client')
+ const multihash = require('multihashes')
+diff --git a/node_modules/caver-js/packages/caver-kct/src/index.js b/node_modules/caver-js/packages/caver-kct/src/index.js
+index 4800322..39e7b12 100644
+--- a/node_modules/caver-js/packages/caver-kct/src/index.js
++++ b/node_modules/caver-js/packages/caver-kct/src/index.js
+@@ -18,7 +18,7 @@
+ 
+ /* eslint-disable max-classes-per-file */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BaseKIP7 = require('./kip7')
+ const BaseKIP17 = require('./kip17')
+ const KIP37 = require('./kip37')
+diff --git a/node_modules/caver-js/packages/caver-kct/src/kctHelper.js b/node_modules/caver-js/packages/caver-kct/src/kctHelper.js
+index 6e215ce..a7e89b7 100644
+--- a/node_modules/caver-js/packages/caver-kct/src/kctHelper.js
++++ b/node_modules/caver-js/packages/caver-kct/src/kctHelper.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BigNumber = require('bignumber.js')
+ const { isBigNumber } = require('../../caver-utils')
+ 
+diff --git a/node_modules/caver-js/packages/caver-kct/src/kip13.js b/node_modules/caver-js/packages/caver-kct/src/kip13.js
+index 2a41298..d51e027 100644
+--- a/node_modules/caver-js/packages/caver-kct/src/kip13.js
++++ b/node_modules/caver-js/packages/caver-kct/src/kip13.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const Contract = require('../../caver-contract')
+ const { kip13JsonInterface, interfaceIds } = require('./kctHelper')
+diff --git a/node_modules/caver-js/packages/caver-kct/src/kip17.js b/node_modules/caver-js/packages/caver-kct/src/kip17.js
+index 8569e54..57dc5c7 100644
+--- a/node_modules/caver-js/packages/caver-kct/src/kip17.js
++++ b/node_modules/caver-js/packages/caver-kct/src/kip17.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BigNumber = require('bignumber.js')
+ 
+ const Contract = require('../../caver-contract')
+diff --git a/node_modules/caver-js/packages/caver-kct/src/kip37.js b/node_modules/caver-js/packages/caver-kct/src/kip37.js
+index 0f23a41..f8d8571 100644
+--- a/node_modules/caver-js/packages/caver-kct/src/kip37.js
++++ b/node_modules/caver-js/packages/caver-kct/src/kip37.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BigNumber = require('bignumber.js')
+ 
+ const Contract = require('../../caver-contract')
+diff --git a/node_modules/caver-js/packages/caver-kct/src/kip7.js b/node_modules/caver-js/packages/caver-kct/src/kip7.js
+index b04a46f..167a23e 100644
+--- a/node_modules/caver-js/packages/caver-kct/src/kip7.js
++++ b/node_modules/caver-js/packages/caver-kct/src/kip7.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BigNumber = require('bignumber.js')
+ 
+ const Contract = require('../../caver-contract')
+diff --git a/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/index.js b/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/index.js
+index 75ff1cf..86230f4 100644
+--- a/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/index.js
++++ b/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/index.js
+@@ -24,7 +24,8 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
++require('any-promise/register/es6-promise')
+ const Promise = require('any-promise')
+ // account, hash, rlp, nat, bytes library will be used from 'eth-lib' temporarily.
+ const AccountLib = require('eth-lib/lib/account')
+diff --git a/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/transactionType/account.js b/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/transactionType/account.js
+index bf09885..7fdc378 100644
+--- a/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/transactionType/account.js
++++ b/node_modules/caver-js/packages/caver-klay/caver-klay-accounts/src/transactionType/account.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const utils = require('../../../../caver-utils')
+diff --git a/node_modules/caver-js/packages/caver-klay/src/getNetworkType.js b/node_modules/caver-js/packages/caver-klay/src/getNetworkType.js
+index bd61451..e729a02 100644
+--- a/node_modules/caver-js/packages/caver-klay/src/getNetworkType.js
++++ b/node_modules/caver-js/packages/caver-klay/src/getNetworkType.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const getNetworkType = function(callback) {
+     const _this = this
+diff --git a/node_modules/caver-js/packages/caver-klay/src/index.js b/node_modules/caver-js/packages/caver-klay/src/index.js
+index b1ffefc..ad552ad 100644
+--- a/node_modules/caver-js/packages/caver-klay/src/index.js
++++ b/node_modules/caver-js/packages/caver-klay/src/index.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const core = require('../../caver-core')
+ const { formatters } = require('../../caver-core-helpers')
+diff --git a/node_modules/caver-js/packages/caver-middleware/src/index.js b/node_modules/caver-js/packages/caver-middleware/src/index.js
+index ba809f2..8d069dd 100644
+--- a/node_modules/caver-js/packages/caver-middleware/src/index.js
++++ b/node_modules/caver-js/packages/caver-middleware/src/index.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const { last } = require('lodash')
++const { last } = require('underscore')
+ const builtinsMiddleware = require('./builtins')
+ 
+ function Middleware() {
+diff --git a/node_modules/caver-js/packages/caver-rpc/src/klay.js b/node_modules/caver-js/packages/caver-rpc/src/klay.js
+index 44d368d..6ddb364 100644
+--- a/node_modules/caver-js/packages/caver-rpc/src/klay.js
++++ b/node_modules/caver-js/packages/caver-rpc/src/klay.js
+@@ -25,7 +25,7 @@
+  */
+ 
+ /* eslint-disable max-classes-per-file */
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const core = require('../../caver-core')
+ const { formatters } = require('../../caver-core-helpers')
+diff --git a/node_modules/caver-js/packages/caver-rtm/src/index.js b/node_modules/caver-js/packages/caver-rtm/src/index.js
+index 4bffdb8..84694d5 100644
+--- a/node_modules/caver-js/packages/caver-rtm/src/index.js
++++ b/node_modules/caver-js/packages/caver-rtm/src/index.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const Method = require('../../caver-core-method')
+ const formatters = require('../../caver-core-helpers').formatters
+ const payloadTransformer = require('../../caver-core-helpers').payloadTransformer
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionHelper/transactionHelper.js b/node_modules/caver-js/packages/caver-transaction/src/transactionHelper/transactionHelper.js
+index 0932ac6..fd89c7f 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionHelper/transactionHelper.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionHelper/transactionHelper.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const utils = require('../../../caver-utils/src')
+ const SignatureData = require('../../../caver-wallet/src/keyring/signatureData')
+ 
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedTransaction.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedTransaction.js
+index ff88324..4c772bc 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedTransaction.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedTransaction.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Hash = require('eth-lib/lib/hash')
+ const Bytes = require('eth-lib/lib/bytes')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedWithRatioTransaction.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedWithRatioTransaction.js
+index 4b1a2d2..634bae9 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedWithRatioTransaction.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractFeeDelegatedWithRatioTransaction.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedTransaction = require('./abstractFeeDelegatedTransaction')
+ const utils = require('../../../caver-utils/src')
+ 
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractTransaction.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractTransaction.js
+index 4fc4d22..bcef69f 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractTransaction.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/abstractTransaction.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const Bytes = require('eth-lib/lib/bytes')
+ const RLP = require('eth-lib/lib/rlp')
+ const Hash = require('eth-lib/lib/hash')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/accountUpdate.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/accountUpdate.js
+index c80c3a5..fbed571 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/accountUpdate.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/accountUpdate.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdate.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdate.js
+index 4eb7510..23b3083 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdate.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdate.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdateWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdateWithRatio.js
+index 998627b..1bcb091 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdateWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/accountUpdate/feeDelegatedAccountUpdateWithRatio.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/cancel.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/cancel.js
+index bd69ca3..a89e6b3 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/cancel.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/cancel.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancel.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancel.js
+index d446983..1003e4f 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancel.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancel.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancelWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancelWithRatio.js
+index 195e5bc..ef5427e 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancelWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/cancel/feeDelegatedCancelWithRatio.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/chainDataAnchoring.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/chainDataAnchoring.js
+index cb85a15..4c36f74 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/chainDataAnchoring.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/chainDataAnchoring.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoring.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoring.js
+index 89cc3d7..f70a532 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoring.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoring.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoringWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoringWithRatio.js
+index 056ce7d..f192f6b 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoringWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/chainDataAnchoring/feeDelegatedChainDataAnchoringWithRatio.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumAccessList.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumAccessList.js
+index bcfd5e2..cb0a469 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumAccessList.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumAccessList.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const Hash = require('eth-lib/lib/hash')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumDynamicFee.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumDynamicFee.js
+index 8ec4ce0..8717899 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumDynamicFee.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/ethereumTypedTransaction/ethereumDynamicFee.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const Hash = require('eth-lib/lib/hash')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/legacyTransaction/legacyTransaction.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/legacyTransaction/legacyTransaction.js
+index aa2a066..dd47a30 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/legacyTransaction/legacyTransaction.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/legacyTransaction/legacyTransaction.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const Hash = require('eth-lib/lib/hash')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeploy.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeploy.js
+index a525fa8..421dd12 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeploy.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeploy.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeployWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeployWithRatio.js
+index 0b76405..c055af2 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeployWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/feeDelegatedSmartContractDeployWithRatio.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, CODE_FORMAT, getCodeFormatTag, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/smartContractDeploy.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/smartContractDeploy.js
+index 2cf4b05..d7816f3 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/smartContractDeploy.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractDeploy/smartContractDeploy.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecution.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecution.js
+index f1b96d1..4f3922b 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecution.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecution.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecutionWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecutionWithRatio.js
+index 1360dd8..d43ae04 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecutionWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/feeDelegatedSmartContractExecutionWithRatio.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/smartContractExecution.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/smartContractExecution.js
+index 8cf4e44..61e5f37 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/smartContractExecution.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/smartContractExecution/smartContractExecution.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransfer.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransfer.js
+index 566a0b2..cd5404a 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransfer.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransfer.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransferWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransferWithRatio.js
+index cc0c684..09a269f 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransferWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/feeDelegatedValueTransferWithRatio.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/valueTransfer.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/valueTransfer.js
+index c77fe66..2f7b984 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/valueTransfer.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransfer/valueTransfer.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemo.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemo.js
+index 484da55..403b01b 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemo.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemo.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AbstractFeeDelegatedTransaction = require('../abstractFeeDelegatedTransaction')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemoWithRatio.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemoWithRatio.js
+index 85d2b1a..a08e17b 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemoWithRatio.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/feeDelegatedValueTransferMemoWithRatio.js
+@@ -18,7 +18,7 @@
+ 
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const { TX_TYPE_STRING, TX_TYPE_TAG, isNot } = require('../../transactionHelper/transactionHelper')
+ const AbstractFeeDelegatedWithRatioTransaction = require('../abstractFeeDelegatedWithRatioTransaction')
+ const utils = require('../../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/valueTransferMemo.js b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/valueTransferMemo.js
+index 4516a98..5216f84 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/valueTransferMemo.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/transactionTypes/valueTransferMemo/valueTransferMemo.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ const AbstractTransaction = require('../abstractTransaction')
+diff --git a/node_modules/caver-js/packages/caver-transaction/src/utils/accessTuple.js b/node_modules/caver-js/packages/caver-transaction/src/utils/accessTuple.js
+index 8eb0894..3e60743 100644
+--- a/node_modules/caver-js/packages/caver-transaction/src/utils/accessTuple.js
++++ b/node_modules/caver-js/packages/caver-transaction/src/utils/accessTuple.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const utils = require('../../../caver-utils/src')
+ 
+ /**
+diff --git a/node_modules/caver-js/packages/caver-utils/src/index.js b/node_modules/caver-js/packages/caver-utils/src/index.js
+index f2ba341..2ac2acd 100644
+--- a/node_modules/caver-js/packages/caver-utils/src/index.js
++++ b/node_modules/caver-js/packages/caver-utils/src/index.js
+@@ -25,7 +25,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const ethjsUnit = require('ethjs-unit')
+ const Account = require('eth-lib/lib/account')
+ const utils = require('./utils')
+diff --git a/node_modules/caver-js/packages/caver-utils/src/soliditySha3.js b/node_modules/caver-js/packages/caver-utils/src/soliditySha3.js
+index fc7d333..2babd10 100644
+--- a/node_modules/caver-js/packages/caver-utils/src/soliditySha3.js
++++ b/node_modules/caver-js/packages/caver-utils/src/soliditySha3.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BN = require('bn.js')
+ const utils = require('./utils')
+ 
+diff --git a/node_modules/caver-js/packages/caver-utils/src/utils.js b/node_modules/caver-js/packages/caver-utils/src/utils.js
+index 1eea92f..83c5fd5 100644
+--- a/node_modules/caver-js/packages/caver-utils/src/utils.js
++++ b/node_modules/caver-js/packages/caver-utils/src/utils.js
+@@ -24,7 +24,7 @@
+  * @date 2017
+  */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const BN = require('bn.js')
+ const BigNumber = require('bignumber.js')
+ const numberToBN = require('number-to-bn')
+diff --git a/node_modules/caver-js/packages/caver-wallet/src/index.js b/node_modules/caver-js/packages/caver-wallet/src/index.js
+index 8d5086e..31375d3 100644
+--- a/node_modules/caver-js/packages/caver-wallet/src/index.js
++++ b/node_modules/caver-js/packages/caver-wallet/src/index.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const Keyring = require('./keyring/keyringFactory')
+ const SingleKeyring = require('./keyring/singleKeyring')
+ const MultipleKeyring = require('./keyring/multipleKeyring')
+diff --git a/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringFactory.js b/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringFactory.js
+index 3979f63..5c57852 100644
+--- a/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringFactory.js
++++ b/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringFactory.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const AccountLib = require('eth-lib/lib/account')
+ 
+ const utils = require('../../../caver-utils/src')
+diff --git a/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringHelper.js b/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringHelper.js
+index 284d227..ba99f82 100644
+--- a/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringHelper.js
++++ b/node_modules/caver-js/packages/caver-wallet/src/keyring/keyringHelper.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const scrypt = require('scrypt-js')
+ const uuid = require('uuid')
+ const cryp = typeof global === 'undefined' ? require('crypto-browserify') : require('crypto')
+diff --git a/node_modules/caver-js/packages/caver-wallet/src/keyring/multipleKeyring.js b/node_modules/caver-js/packages/caver-wallet/src/keyring/multipleKeyring.js
+index 2dd1e0f..c66c675 100644
+--- a/node_modules/caver-js/packages/caver-wallet/src/keyring/multipleKeyring.js
++++ b/node_modules/caver-js/packages/caver-wallet/src/keyring/multipleKeyring.js
+@@ -19,7 +19,7 @@
+ /* eslint-disable no-unused-vars */
+ /* eslint-disable class-methods-use-this */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const utils = require('../../../caver-utils')
+ const PrivateKey = require('./privateKey')
+ const { KEY_ROLE } = require('./keyringHelper')
+diff --git a/node_modules/caver-js/packages/caver-wallet/src/keyring/roleBasedKeyring.js b/node_modules/caver-js/packages/caver-wallet/src/keyring/roleBasedKeyring.js
+index 79831ae..667a74b 100644
+--- a/node_modules/caver-js/packages/caver-wallet/src/keyring/roleBasedKeyring.js
++++ b/node_modules/caver-js/packages/caver-wallet/src/keyring/roleBasedKeyring.js
+@@ -19,7 +19,7 @@
+ /* eslint-disable no-unused-vars */
+ /* eslint-disable class-methods-use-this */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const utils = require('../../../caver-utils')
+ const PrivateKey = require('./privateKey')
+diff --git a/node_modules/caver-js/packages/caver-wallet/src/keyring/signatureData.js b/node_modules/caver-js/packages/caver-wallet/src/keyring/signatureData.js
+index 09e90b5..3434d02 100644
+--- a/node_modules/caver-js/packages/caver-wallet/src/keyring/signatureData.js
++++ b/node_modules/caver-js/packages/caver-wallet/src/keyring/signatureData.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const utils = require('../../../caver-utils/src/utils')
+ 
+ const emptySigArray = ['0x01', '0x', '0x']
+diff --git a/node_modules/caver-js/test/abi.decodeParameter.js b/node_modules/caver-js/test/abi.decodeParameter.js
+index c202793..3098300 100644
+--- a/node_modules/caver-js/test/abi.decodeParameter.js
++++ b/node_modules/caver-js/test/abi.decodeParameter.js
+@@ -19,7 +19,7 @@
+     Modified and improved for the caver-js development.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ 
+ const assert = chai.assert
+diff --git a/node_modules/caver-js/test/conformanceTest.js b/node_modules/caver-js/test/conformanceTest.js
+index 8609d08..470e01d 100644
+--- a/node_modules/caver-js/test/conformanceTest.js
++++ b/node_modules/caver-js/test/conformanceTest.js
+@@ -18,7 +18,7 @@
+ 
+ const path = require('path')
+ const fs = require('fs')
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const chai = require('chai')
+ const sinon = require('sinon')
+diff --git a/node_modules/caver-js/test/intTest.js b/node_modules/caver-js/test/intTest.js
+index fc64472..f8e9e23 100644
+--- a/node_modules/caver-js/test/intTest.js
++++ b/node_modules/caver-js/test/intTest.js
+@@ -27,7 +27,7 @@
+ // To execute a specific test,
+ // $ mocha --grep INT-LEGACY/012 test/intTest.js
+ // In `caver-js/package.json`, the test scripts are defined. (ex: `npm run intTxTest`, ...)
+-const _ = require('lodash')
++const _ = require('underscore')
+ const RLP = require('eth-lib/lib/rlp')
+ const Bytes = require('eth-lib/lib/bytes')
+ 
+diff --git a/node_modules/caver-js/test/packages/caver.account.accountKey.js b/node_modules/caver-js/test/packages/caver.account.accountKey.js
+index a68c6d4..39cd344 100644
+--- a/node_modules/caver-js/test/packages/caver.account.accountKey.js
++++ b/node_modules/caver-js/test/packages/caver.account.accountKey.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ const sinonChai = require('sinon-chai')
+ const chaiAsPromised = require('chai-as-promised')
+diff --git a/node_modules/caver-js/test/packages/caver.kct.kip37.js b/node_modules/caver-js/test/packages/caver.kct.kip37.js
+index 4d9ae16..fc97e63 100644
+--- a/node_modules/caver-js/test/packages/caver.kct.kip37.js
++++ b/node_modules/caver-js/test/packages/caver.kct.kip37.js
+@@ -17,7 +17,7 @@
+ */
+ 
+ const BigNumber = require('bignumber.js')
+-const _ = require('lodash')
++const _ = require('underscore')
+ 
+ const testRPCURL = require('../testrpc')
+ const { expect } = require('../extendedChai')
+diff --git a/node_modules/caver-js/test/packages/caver.rpc.js b/node_modules/caver-js/test/packages/caver.rpc.js
+index fbe3358..39da6a3 100644
+--- a/node_modules/caver-js/test/packages/caver.rpc.js
++++ b/node_modules/caver-js/test/packages/caver.rpc.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ const sinon = require('sinon')
+ const sinonChai = require('sinon-chai')
+diff --git a/node_modules/caver-js/test/packages/caver.transaction/ethereumAccessList.js b/node_modules/caver-js/test/packages/caver.transaction/ethereumAccessList.js
+index 4921797..fb6b8dd 100644
+--- a/node_modules/caver-js/test/packages/caver.transaction/ethereumAccessList.js
++++ b/node_modules/caver-js/test/packages/caver.transaction/ethereumAccessList.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ const sinon = require('sinon')
+ const sinonChai = require('sinon-chai')
+diff --git a/node_modules/caver-js/test/packages/caver.transaction/ethereumDynamicFee.js b/node_modules/caver-js/test/packages/caver.transaction/ethereumDynamicFee.js
+index 6abb88f..4940bae 100644
+--- a/node_modules/caver-js/test/packages/caver.transaction/ethereumDynamicFee.js
++++ b/node_modules/caver-js/test/packages/caver.transaction/ethereumDynamicFee.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ const sinon = require('sinon')
+ const sinonChai = require('sinon-chai')
+diff --git a/node_modules/caver-js/test/packages/caver.utils.js b/node_modules/caver-js/test/packages/caver.utils.js
+index 00dc5a3..cf4d2f0 100644
+--- a/node_modules/caver-js/test/packages/caver.utils.js
++++ b/node_modules/caver-js/test/packages/caver.utils.js
+@@ -18,7 +18,7 @@
+ 
+ const BN = require('bn.js')
+ const BigNumber = require('bignumber.js')
+-const _ = require('lodash')
++const _ = require('underscore')
+ const testRPCURL = require('../testrpc')
+ const { expect } = require('../extendedChai')
+ 
+diff --git a/node_modules/caver-js/test/packages/caver.wallet.js b/node_modules/caver-js/test/packages/caver.wallet.js
+index 592ec5b..f619c01 100644
+--- a/node_modules/caver-js/test/packages/caver.wallet.js
++++ b/node_modules/caver-js/test/packages/caver.wallet.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ const sinon = require('sinon')
+ const sinonChai = require('sinon-chai')
+diff --git a/node_modules/caver-js/test/packages/caver.wallet.keyring.js b/node_modules/caver-js/test/packages/caver.wallet.keyring.js
+index 5039378..240eda4 100644
+--- a/node_modules/caver-js/test/packages/caver.wallet.keyring.js
++++ b/node_modules/caver-js/test/packages/caver.wallet.keyring.js
+@@ -16,7 +16,7 @@
+     along with the caver-js. If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+-const _ = require('lodash')
++const _ = require('underscore')
+ const chai = require('chai')
+ const sinon = require('sinon')
+ const sinonChai = require('sinon-chai')
+diff --git a/node_modules/caver-js/types/packages/caver-utils/src/index.d.ts b/node_modules/caver-js/types/packages/caver-utils/src/index.d.ts
+index ee868a8..2af21c8 100644
+--- a/node_modules/caver-js/types/packages/caver-utils/src/index.d.ts
++++ b/node_modules/caver-js/types/packages/caver-utils/src/index.d.ts
+@@ -15,7 +15,7 @@
+ 
+ import BigNumber from 'bignumber.js'
+ import BN = require('bn.js')
+-import _ = require('lodash')
++import _ = require('underscore')
+ import { SignatureData } from '../../caver-wallet/src'
+ import { TransactionForRPC, PromiEvent } from '../../caver-core/src'
+ 

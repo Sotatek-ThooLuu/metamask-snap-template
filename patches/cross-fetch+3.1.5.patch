@@ -1,0 +1,26 @@
+diff --git a/node_modules/cross-fetch/dist/browser-polyfill.js b/node_modules/cross-fetch/dist/browser-polyfill.js
+index 11ccad1..1a86cfd 100644
+--- a/node_modules/cross-fetch/dist/browser-polyfill.js
++++ b/node_modules/cross-fetch/dist/browser-polyfill.js
+@@ -512,7 +512,7 @@ var irrelevant = (function (exports) {
+ 
+   fetch.polyfill = true;
+ 
+-  if (!self.fetch) {
++  if (!self.fetch || !self.Response || !self.Headers) {
+     self.fetch = fetch;
+     self.Headers = Headers;
+     self.Request = Request;
+diff --git a/node_modules/cross-fetch/dist/browser-ponyfill.js b/node_modules/cross-fetch/dist/browser-ponyfill.js
+index f216aa3..7fecf6c 100644
+--- a/node_modules/cross-fetch/dist/browser-ponyfill.js
++++ b/node_modules/cross-fetch/dist/browser-ponyfill.js
+@@ -521,7 +521,7 @@ var irrelevant = (function (exports) {
+ 
+   fetch.polyfill = true;
+ 
+-  if (!self.fetch) {
++  if (!self.fetch || !self.Response || !self.Headers) {
+     self.fetch = fetch;
+     self.Headers = Headers;
+     self.Request = Request;
