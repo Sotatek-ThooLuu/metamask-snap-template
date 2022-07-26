@@ -1,5 +1,5 @@
 // const Caver = require('caver-js');
-const { getCaverVersion } = require('./caverHelper');
+const { getCaverVersion, getBlockNumber } = require('./caverHelper');
 
 module.exports.onRpcRequest = async ({ origin, request }) => {
   switch (request.method) {
@@ -10,14 +10,15 @@ module.exports.onRpcRequest = async ({ origin, request }) => {
       const standard = Math.ceil(baseFee + parseFloat(fees.standard));
       const fastest = Math.ceil(baseFee + parseFloat(fees.fastest));
       const caverVersion = await getCaverVersion();
-
+      const blockNumber = await getBlockNumber();
+      console.log(`===origin:`, origin, request);
       return wallet.request({
         method: 'snap_confirm',
         params: [
           {
             prompt: `Gas Fees`,
             description: 'Current Gas Fees from etherchain.org:',
-            textAreaContent: `Low: ${safeLow}\nAverage: ${standard}\nHigh: ${fastest}\nCaver version: ${caverVersion}`,
+            textAreaContent: `Low: ${safeLow}\nAverage: ${standard}\nHigh: ${fastest}\nCaver version: ${caverVersion}\nBlock number: ${blockNumber}`,
           },
         ],
       });

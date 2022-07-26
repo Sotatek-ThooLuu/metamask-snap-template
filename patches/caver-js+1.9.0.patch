@@ -124,7 +124,7 @@ index 7f504aa..f93bdb5 100644
  const validateParams = require('./validateFunction').validateParams
  const { getTypeInt } = require('../../caver-transaction/src/transactionHelper/transactionHelper')
 diff --git a/node_modules/caver-js/packages/caver-core-method/src/index.js b/node_modules/caver-js/packages/caver-core-method/src/index.js
-index f952190..e9f6409 100644
+index f952190..dc0422e 100644
 --- a/node_modules/caver-js/packages/caver-core-method/src/index.js
 +++ b/node_modules/caver-js/packages/caver-core-method/src/index.js
 @@ -25,7 +25,7 @@
@@ -169,6 +169,17 @@ index f952190..e9f6409 100644
      const [callName, optionalName] = this.name.split('.')
  
      if (optionalName) {
+@@ -534,8 +542,8 @@ function formatGasParametersToHex(txObject) {
+     }
+ }
+ 
+-function buildCall() {
+-    const method = this
++function buildCall(customMethod) {
++    const method = customMethod ? customMethod : this
+     const isSendTx =
+         method.call === 'klay_sendTransaction' ||
+         method.call === 'klay_sendTransactionAsFeePayer' ||
 diff --git a/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js b/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
 index 04b2b54..5806d8d 100644
 --- a/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
