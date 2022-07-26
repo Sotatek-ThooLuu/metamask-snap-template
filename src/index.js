@@ -3,46 +3,21 @@ const { getCaverVersion, getBlockNumber } = require('./caverHelper');
 
 module.exports.onRpcRequest = async ({ origin, request }) => {
   switch (request.method) {
-    case 'hello': {
-      const fees = JSON.parse(await getFees());
-      const baseFee = parseFloat(fees.currentBaseFee);
-      const safeLow = Math.ceil(baseFee + parseFloat(fees.safeLow));
-      const standard = Math.ceil(baseFee + parseFloat(fees.standard));
-      const fastest = Math.ceil(baseFee + parseFloat(fees.fastest));
+    case 'test_caver_js': {
       const caverVersion = await getCaverVersion();
       const blockNumber = await getBlockNumber();
-      console.log(`===origin:`, origin, request);
       return wallet.request({
         method: 'snap_confirm',
         params: [
           {
-            prompt: `Gas Fees`,
-            description: 'Current Gas Fees from etherchain.org:',
-            textAreaContent: `Low: ${safeLow}\nAverage: ${standard}\nHigh: ${fastest}\nCaver version: ${caverVersion}\nBlock number: ${blockNumber}`,
+            prompt: `Test caver-js`,
+            description: 'Get caver version & latest block number:',
+            textAreaContent: `+ Caver version: ${caverVersion}\n+ Block number: ${blockNumber}`,
           },
         ],
       });
-      // return wallet.request({
-      //   method: 'snap_confirm',
-      //   params: [
-      //     {
-      //       prompt: `Hello, ${origin}!`,
-      //       description:
-      //         'This custom confirmation is just for display purposes.',
-      //       textAreaContent:
-      //         'But you can edit the snap source code to make it do something, if you want to!',
-      //     },
-      //   ],
-      // });
     }
     default:
       throw new Error('Method not found.');
   }
 };
-
-async function getFees() {
-  const response = await fetch('https://www.etherchain.org/api/gasPriceOracle');
-  const caverVersion = await getCaverVersion();
-  console.log(caverVersion);
-  return response.text();
-}
