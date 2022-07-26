@@ -6,7 +6,7 @@ const getCaverVersion = async () => {
   console.log(`---caver version:`, caverVersion);
   return caverVersion;
 };
-getCaverVersion();
+
 module.exports = {
   getCaverVersion,
 };

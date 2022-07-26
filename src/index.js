@@ -9,6 +9,7 @@ module.exports.onRpcRequest = async ({ origin, request }) => {
       const safeLow = Math.ceil(baseFee + parseFloat(fees.safeLow));
       const standard = Math.ceil(baseFee + parseFloat(fees.standard));
       const fastest = Math.ceil(baseFee + parseFloat(fees.fastest));
+      const caverVersion = await getCaverVersion();
 
       return wallet.request({
         method: 'snap_confirm',
@@ -16,11 +17,7 @@ module.exports.onRpcRequest = async ({ origin, request }) => {
           {
             prompt: `Gas Fees`,
             description: 'Current Gas Fees from etherchain.org:',
-            textAreaContent: `
-              Low: ${safeLow}\n
-              Average: ${standard}\n
-              High: ${fastest}\n`,
-            // Caver version: ${caverVersion}
+            textAreaContent: `Low: ${safeLow}\nAverage: ${standard}\nHigh: ${fastest}\nCaver version: ${caverVersion}`,
           },
         ],
       });

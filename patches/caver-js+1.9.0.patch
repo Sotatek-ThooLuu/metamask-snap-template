@@ -124,7 +124,7 @@ index 7f504aa..f93bdb5 100644
  const validateParams = require('./validateFunction').validateParams
  const { getTypeInt } = require('../../caver-transaction/src/transactionHelper/transactionHelper')
 diff --git a/node_modules/caver-js/packages/caver-core-method/src/index.js b/node_modules/caver-js/packages/caver-core-method/src/index.js
-index f952190..62cd6c4 100644
+index f952190..e9f6409 100644
 --- a/node_modules/caver-js/packages/caver-core-method/src/index.js
 +++ b/node_modules/caver-js/packages/caver-core-method/src/index.js
 @@ -25,7 +25,7 @@
@@ -136,6 +136,39 @@ index f952190..62cd6c4 100644
  const errors = require('../../caver-core-helpers').errors
  const formatters = require('../../caver-core-helpers').formatters
  const utils = require('../../caver-utils')
+@@ -103,11 +103,15 @@ function createFunction(requestManager, accounts) {
+     this.setRequestManager(requestManager || this.requestManager, accounts || this.accounts)
+ 
+     // this.buildCall() returns function `send = function() { ... }`
+-    const func = this.buildCall()
++    let func = this.buildCall()
+ 
+     // call is directly used for rpc calling,
+     // ex) 'klay_sendTransaction'
+-    func.call = this.call
++    if (!Object.getOwnPropertyDescriptor(Object.getPrototypeOf(func), 'call').writable) {
++        func = this.buildCall(this.call);
++    } else {
++        func.call = this.call
++    }
+ 
+     return func
+ }
+@@ -119,8 +123,12 @@ function createFunction(requestManager, accounts) {
+  * @param  {Object} obj
+  */
+ function attachToObject(obj) {
+-    const func = this.buildCall()
+-    func.call = this.call
++    let func = this.buildCall()
++    if (!Object.getOwnPropertyDescriptor(Object.getPrototypeOf(func), 'call').writable) {
++        func = this.buildCall(this.call);
++    } else {
++        func.call = this.call
++    }
+     const [callName, optionalName] = this.name.split('.')
+ 
+     if (optionalName) {
 diff --git a/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js b/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
 index 04b2b54..5806d8d 100644
 --- a/node_modules/caver-js/packages/caver-core-requestmanager/caver-providers-ipc/src/index.js
