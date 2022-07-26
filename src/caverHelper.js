@@ -9,7 +9,7 @@ const getCaverVersion = async () => {
 const getBlockNumber = async () => {
   const caver = new Caver('https://public-node-api.klaytnapi.com/v1/baobab');
   const blockNumber = await caver.rpc.klay.getBlockNumber();
-  return blockNumber;
+  return caver.utils.hexToNumber(blockNumber);
 };
 
 module.exports = {
