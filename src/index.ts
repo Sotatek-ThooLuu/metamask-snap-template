@@ -1,13 +1,13 @@
 import { OnRpcRequestHandler } from '@metamask/snap-types';
-import { createAccount, getAccount, sign } from "./caverHelper";
+import { sign } from './caverHelper';
 
 const addr: string = "0xABB70823C20c977302C89197E6A87AC09D184d72";
-const privateKey: string = "cfe490ba17d46c5aa7c995249c05ceac71e5bd3c0ca8c0c880b4b7f8ad4fe092";
+// const privateKey: string = "cfe490ba17d46c5aa7c995249c05ceac71e5bd3c0ca8c0c880b4b7f8ad4fe092";
 const data: string = "data to sign";
 
 export const onRpcRequest: OnRpcRequestHandler = async ({ origin, request }) => {
   switch (request.method) {
-    case 'hello':
+    case 'sign':
       const res = wallet.request({
         method: 'snap_confirm',
         params: [
@@ -22,12 +22,12 @@ export const onRpcRequest: OnRpcRequestHandler = async ({ origin, request }) => 
       });
 
       if (res) {
-        try { 
-          const resSign = await sign(data, `0x${privateKey}`);
-          console.log("27", resSign);
+        try {
+          const resSign = await sign(data, addr);
+          console.log("Res 27", resSign);
           
         } catch(err) { 
-          console.error(err.message);
+          console.error("Err 30", err.message);
         };
       }
       

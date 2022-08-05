@@ -3,7 +3,7 @@
   "description": "The template-ts-snap Snap.",
   "proposedName": "template-ts-snap",
   "source": {
-    "shasum": "cwxY2pZ0tq/9imwAqU5Vu5v6e3kbDtAreU/VJWloYG8=",
+    "shasum": "s40XVk7neMraGTw4IQs2+Ye4tYC8dvfRdfw4YnZ8Zkk=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",

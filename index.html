@@ -25,17 +25,17 @@
     <br/>
 
     <button class="connect">Connect</button>
-    <button class="sendHello">Test Caver-js integrate</button>
+    <button class="sign">Sign</button>
   </body>
 
   <script>
     const snapId = `local:${window.location.href}`;
 
     const connectButton = document.querySelector('button.connect')
-    const sendButton = document.querySelector('button.sendHello')
+    const signButton = document.querySelector('button.sign')
 
     connectButton.addEventListener('click', connect)
-    sendButton.addEventListener('click', send)
+    signButton.addEventListener('click', sign)
 
     // here we get permissions to interact with and install the snap
     async function connect () {
@@ -47,19 +47,22 @@
           }]
         })
         console.log(`connectResult:`, connectResult); 
-      } catch (error) {
+      } catch (err) {
         alert('Connect error: ' + err.message || err)
       }
     }
 
     // here we call the snap's "hello" method
-    async function send () {
+    async function sign () {
       try {
-        const response = await ethereum.request({
+        await ethereum.request({
           method: 'wallet_invokeSnap',
-          params: [snapId, {
-            method: 'hello'
-          }]
+          params: [
+            snapId, 
+            {
+              method: 'sign'
+            }
+          ]
         })
       } catch (err) {
         console.error(`Error:`, err.message)
