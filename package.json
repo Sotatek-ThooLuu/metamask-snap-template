@@ -17,5 +17,6 @@
     "postinstall-postinstall": "^2.1.0",
     "rimraf": "^3.0.2",
     "underscore": "^1.13.4"
-  }
+  },
+  "dependencies": {}
 }

@@ -25,48 +25,41 @@
     <br/>
 
     <button class="connect">Connect</button>
-    <button class="sign">Sign</button>
+    <button class="send">Send</button>
   </body>
 
   <script>
     const snapId = `local:${window.location.href}`;
 
     const connectButton = document.querySelector('button.connect')
-    const signButton = document.querySelector('button.sign')
+    const sendButton = document.querySelector('button.send')
 
     connectButton.addEventListener('click', connect)
-    signButton.addEventListener('click', sign)
+    sendButton.addEventListener('click', send)
 
     // here we get permissions to interact with and install the snap
     async function connect () {
       try {
-        const connectResult = await ethereum.request({
+          await ethereum.request({
           method: 'wallet_enable',
           params: [{
             wallet_snap: { [snapId]: {} },
           }]
         })
-        console.log(`connectResult:`, connectResult); 
       } catch (err) {
         alert('Connect error: ' + err.message || err)
       }
     }
 
     // here we call the snap's "hello" method
-    async function sign () {
+    async function send () {
       try {
         await ethereum.request({
           method: 'wallet_invokeSnap',
-          params: [
-            snapId, 
-            {
-              method: 'sign'
-            }
-          ]
+          params: [ snapId, { method: 'send' }],
         })
       } catch (err) {
-        console.error(`Error:`, err.message)
-        alert('Problem happened: ' + err.message || err)
+        console.error("Error 62:", err.message);
       }
     }
   </script>
