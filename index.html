@@ -24,15 +24,21 @@
     </details>
     <br/>
 
-    <button class="connect">Connect</button>
-    <button class="send">Send</button>
+    <button class="connect" style="margin-bottom: 1rem;">Connect</button>
+    <div>
+      <label for="to">To: </label>
+      <input type="text" id="to"/>
+      <label for="value">Value: </label>
+      <input type="text" id="value"/>
+      <button class="send">Send</button>
+    </div>
   </body>
 
   <script>
     const snapId = `local:${window.location.href}`;
 
-    const connectButton = document.querySelector('button.connect')
-    const sendButton = document.querySelector('button.send')
+    const connectButton = document.querySelector('button.connect');
+    const sendButton = document.querySelector('button.send');
 
     connectButton.addEventListener('click', connect)
     sendButton.addEventListener('click', send)
@@ -54,12 +60,15 @@
     // here we call the snap's "hello" method
     async function send () {
       try {
+        const to = document.getElementById("to").value;
+        const value = document.getElementById("value").value;
+
         await ethereum.request({
           method: 'wallet_invokeSnap',
-          params: [ snapId, { method: 'send' }],
+          params: [ snapId, { method: 'send', to, value }]
         })
       } catch (err) {
-        console.error("Error 62:", err.message);
+        console.error(err.message);
       }
     }
   </script>
