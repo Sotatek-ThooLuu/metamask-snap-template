@@ -3,7 +3,7 @@
   "description": "The template-ts-snap Snap.",
   "proposedName": "template-ts-snap",
   "source": {
-    "shasum": "HTNX98cphqaXFRcIcjSL69xE1RbwAVWFiOcnhoCEQ2Y=",
+    "shasum": "L5Q+KYlZkun2JwDCciSuAo2PVhW/FTH4cGfg5+/Of50=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
@@ -14,8 +14,10 @@
     }
   },
   "initialPermissions": {
+    "endowment:network-access": {},
     "snap_confirm": {},
-    "endowment:network-access": {}
+    "snap_getBip44Entropy_8217": {},
+    "snap_manageState": {}
   },
   "manifestVersion": "0.1"
 }

@@ -1,32 +1,44 @@
+import {
+  BIP44Node,
+  getBIP44AddressKeyDeriver,
+  JsonBIP44CoinTypeNode,
+} from '@metamask/key-tree';
 import { OnRpcRequestHandler } from '@metamask/snap-types';
-import { send } from './caverHelper';
+import { getBalance, sendToken } from './caverHelper';
 
-const from: string = '0x4cE51d78E0Afe5baccb64C30Bd0A8651bF36e8BB';                        // acc1
-const key: string = '0xc5309be41d382917f9fb5f1f075cd062409acf7c6b97357b5db9bca82ae18331'; // klaytn private key
-// const to: string = '0xc7ec3eC37437eb4474F19B4f2F2f52d577Ab6ec5';                          // acc2
+let account: BIP44Node;
 
-export const onRpcRequest: OnRpcRequestHandler = async ({ origin, request }) => {
+export const onRpcRequest: OnRpcRequestHandler = async ({ request }) => {
   switch (request.method) {
-    case 'send':
-      const to = request['to'];
-      const value = request['value'];
+    case 'klay_getAddress':
+      const coinNode = (await wallet.request({ method: 'snap_getBip44Entropy_8217' })) as JsonBIP44CoinTypeNode;
+      const deriveCoinNode = await getBIP44AddressKeyDeriver(coinNode);
+      account = await deriveCoinNode(0);
+      return account.address;
 
+    case 'klay_getBalance':
+      return await getBalance(account.address);
+
+    case 'klay_sendToken':
+      if (!account) return false;
+
+      const to = request.params['to'];
+      const value = request.params['value'];
       const confirm = await wallet.request({
         method: 'snap_confirm',
         params: [{
-          prompt: `Hello, ${origin}`,
+          prompt: 'Confirm transaction',
           description: 'Please confirm transaction',
           textAreaContent: `To: ${to}\nValue: ${value} KLAY`
         }]
       });
 
       if (confirm) {
-        const sendValue = send(from, to, key, value);
-        return sendValue;
+        await sendToken(account, to, value);
+        return true;
       }
-
-      return confirm;
+      return false;
     default:
-      throw new Error('Method not found.');
+      break;
   }
 };

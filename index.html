@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Caver Snaps</title>
-    <link rel="icon" type="image/svg" href="./images/icon.svg"/>
+    <link rel="icon" type="image/svg" href="./images/icon.svg" />
   </head>
 
   <body>
@@ -14,62 +14,92 @@
         <li>Please note that:</li>
         <ul>
           <li>
-            The <code>snap.manifest.json</code> and <code>package.json</code> must be located in the server root directory..
+            The <code>snap.manifest.json</code> and
+            <code>package.json</code> must be located in the server root
+            directory..
           </li>
           <li>
-            The Snap bundle must be hosted at the location specified by the <code>location</code> field of <code>snap.manifest.json</code>.
+            The Snap bundle must be hosted at the location specified by the
+            <code>location</code> field of <code>snap.manifest.json</code>.
           </li>
         </ul>
       </ul>
     </details>
-    <br/>
+    <br />
 
-    <button class="connect" style="margin-bottom: 1rem;">Connect</button>
+    <button class="connect" style="margin-bottom: 1rem">Connect</button>
     <div>
-      <label for="to">To: </label>
-      <input type="text" id="to"/>
-      <label for="value">Value: </label>
-      <input type="text" id="value"/>
+      <div>
+        <span>Address: </span>
+        <span id="address"/>
+      </div>
+      <div>
+        <span>Balance: </span>
+        <span id="balance"/>
+      </div>
+    </div>
+
+    <div>
+      <label for="sendAddr">Send to: </label>
+      <input type="text" id="sendAddr"/>
+      <label for="amount">Amount: </label>
+      <input type="text" id="amount">
       <button class="send">Send</button>
     </div>
-  </body>
 
   <script>
     const snapId = `local:${window.location.href}`;
 
     const connectButton = document.querySelector('button.connect');
-    const sendButton = document.querySelector('button.send');
+    const sendButton = document.querySelector('button.send')
 
-    connectButton.addEventListener('click', connect)
+    connectButton.addEventListener('click', connect);
     sendButton.addEventListener('click', send)
 
-    // here we get permissions to interact with and install the snap
-    async function connect () {
+    async function connect() {
       try {
-          await ethereum.request({
+        await ethereum.request({
           method: 'wallet_enable',
-          params: [{
-            wallet_snap: { [snapId]: {} },
-          }]
-        })
+          params: [
+            {
+              wallet_snap: { [snapId]: {} },
+            },
+          ],
+        });
+
+        const address = await ethereum.request({
+          method: 'wallet_invokeSnap',
+          params: [snapId, { method: 'klay_getAddress' }],
+        });
+        const balance = await ethereum.request({
+          method: 'wallet_invokeSnap',
+          params: [snapId, { method: 'klay_getBalance' }], 
+        });
+
+        document.getElementById('address').innerHTML = address;
+        document.getElementById('balance').innerHTML = balance;
       } catch (err) {
-        alert('Connect error: ' + err.message || err)
+        alert('Connect error: ' + err.message || err);
       }
     }
 
-    // here we call the snap's "hello" method
-    async function send () {
-      try {
-        const to = document.getElementById("to").value;
-        const value = document.getElementById("value").value;
+    async function send() {
+      const sendAddr = document.getElementById('sendAddr').value;
+      const amount = document.getElementById('amount').value;
 
-        await ethereum.request({
+      const sendSuccess = await ethereum.request({
+        method: 'wallet_invokeSnap',
+        params: [snapId, { method: 'klay_sendToken', params: { to: sendAddr, value: amount } }]
+      });
+
+      if (sendSuccess) {
+        const balance = await ethereum.request({
           method: 'wallet_invokeSnap',
-          params: [ snapId, { method: 'send', to, value }]
-        })
-      } catch (err) {
-        console.error(err.message);
-      }
+          params: [snapId, { method: 'klay_getBalance' }], 
+        });
+        document.getElementById('balance').innerHTML = balance;
+        alert('Send success');
+      } else alert('Send fail');
     }
   </script>
 </html>
